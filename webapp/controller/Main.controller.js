@@ -39,13 +39,35 @@ sap.ui.define([
 					processData: false
 				});
 			});
+			var me = this;
 
 			return Promise.resolve(promise).then(function (result) {
-				return "Bearer " + result.access_token;
+				return me.groupData(result);
 			});
 		},
 
-		groupData: function () {
+		groupData: function (result) {
+			var out = [];
+			for(var i in result)
+			{
+				switch(i%4)
+				{
+					case 0:
+						out[(i-i%4)/4] = result[i].measure;
+						break;
+					case 1:
+						out[(i-i%4)/4].longitude = result[i].measure.longitude;
+						break;
+					case 2:
+						out[(i-i%4)/4].latitude = result[i].measure.latitude;
+						break;
+					case 3:
+						out[(i-i%4)/4].artifact_signal = result[i].measure.artifact_signal;
+						break;
+				}
+			}
+			console.log(out);
+			return JSON.stringify(out);
 		},
 
 		triggerML: function (oEvent) {
