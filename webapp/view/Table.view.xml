@@ -21,6 +21,7 @@
 </mvc:View>
 -->
 <mvc:View
+	xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
 	controllerName="com.flexso.HackTheFuture.controller.Main"
 	xmlns="sap.m"
 	xmlns:mvc="sap.ui.core.mvc">
@@ -57,7 +58,7 @@
 						text="{artifactModel>longitude}" />
 					<Text
 						text="{artifactModel>latitude}" />
-					<Button text="Send artifact signal to ML" coords="{artifactModel>artifact_signal}" press="triggerML"/>
+					<Button text="Send artifact signal to ML" app:coords="{artifactModel>artifact_signal}" press="triggerML"/>
 				</cells>
 			</ColumnListItem>
 		</items>
