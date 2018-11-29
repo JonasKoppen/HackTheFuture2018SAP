@@ -19,11 +19,30 @@ sap.ui.define([
 		getIotData: function () {
 			// url to get the artifact signals of your device : 
 			// '/devices/XX/measures'  -> XX = your device id
-			var oData = this.getView().getModel().getProperty("/devices/109/measures");
-			
-	         var oBundle = this.getView().getModel("i18n").getResourceBundle();
-	         var sMsg = oBundle.getText("helloMsg", [oData]);
-        	MessageToast.show(sMsg);
+			console.log("getIOTData");
+			var promise = new Promise(function (resolve, reject) {
+				$.ajax({
+					type: "GET",
+					url: "/devices/109/measures",
+					headers: "",
+					success: function (data) {
+						console.log(data);
+						resolve(data);
+					},
+					error: function (Error) {
+						reject((Error));
+					},
+					contentType: false,
+					async: true,
+					data: null,
+					cache: false,
+					processData: false
+				});
+			});
+
+			return Promise.resolve(promise).then(function (result) {
+				return "Bearer " + result.access_token;
+			});
 		},
 
 		groupData: function () {
