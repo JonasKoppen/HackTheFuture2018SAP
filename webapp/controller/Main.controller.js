@@ -19,14 +19,14 @@ sap.ui.define([
 		getIotData: function () {
 			// url to get the artifact signals of your device : 
 			// '/devices/XX/measures'  -> XX = your device id
-		},
-
-		groupData: function () {
 			var oData = this.getView().getModel().getProperty("/devices/109/measures");
 			
 	         var oBundle = this.getView().getModel("i18n").getResourceBundle();
 	         var sMsg = oBundle.getText("helloMsg", [oData]);
         	MessageToast.show(sMsg);
+		},
+
+		groupData: function () {
 		},
 
 		triggerML: function (oEvent) {
