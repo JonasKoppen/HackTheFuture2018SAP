@@ -15,7 +15,7 @@
 		},
 		"dataSources": {
 			"invoiceRemote": {
-				"uri": "https://flexso.eu10.cp.iot.sap/iot/core/api/v1/devices/109/measures",
+				"uri": "/devices/109/measures",
 				"type": "OData",
 				"settings": {
 					"odataVersion": "2.0"

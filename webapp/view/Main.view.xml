@@ -3,8 +3,10 @@
 	<App>
 		<pages>
 			<Page title="Hack the future 2018">
-				<content>
-					
+				<content >
+					<FormattedText htmlText="Hello {{/devices/109/measures}}">
+						
+					</FormattedText>
 				</content>
 				<footer>
 					<Toolbar width="100%">

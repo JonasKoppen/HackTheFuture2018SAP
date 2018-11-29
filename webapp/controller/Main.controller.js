@@ -5,8 +5,9 @@ sap.ui.define([
 	'sap/m/Button',
 	'sap/m/Dialog',
 	'sap/m/List',
-	'sap/m/StandardListItem'
-], function (Controller, MessageBox, JSONModel, Button, Dialog, List, StandardListItem) {
+	'sap/m/StandardListItem',
+   "sap/m/MessageToast"
+], function (Controller, MessageBox, JSONModel, Button, Dialog, List, StandardListItem, MessageToast) {
 	"use strict";
 
 	return Controller.extend("com.flexso.HackTheFuture.controller.Main", {
@@ -21,6 +22,11 @@ sap.ui.define([
 		},
 
 		groupData: function () {
+			var oData = this.getView().getModel().getProperty("/devices/109/measures");
+			
+	         var oBundle = this.getView().getModel("i18n").getResourceBundle();
+	         var sMsg = oBundle.getText("helloMsg", [oData]);
+        	MessageToast.show(sMsg);
 		},
 
 		triggerML: function (oEvent) {
