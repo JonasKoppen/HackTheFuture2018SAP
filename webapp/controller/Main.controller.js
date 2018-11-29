@@ -65,6 +65,9 @@ sap.ui.define([
 						break;
 					case 3:
 						out[(i-i%4)/4].artifact_signal = result[i].measure.artifact_signal;
+						var contentType = 'image/jpg';
+			            var image = this.base64toBlob(result[i].measure.artifact_signal, contentType);
+						out[(i-i%4)/4].img = URL.createObjectURL(image);
 						break;
 				}
 			}
@@ -73,14 +76,37 @@ sap.ui.define([
 			return {"array":out};
 		},
 
+		pressDialog: null,
 		triggerML: function (oEvent) {
 			var base64 = oEvent.getSource().getCustomData()[0].getProperty('value');
-			var contentType = 'image/jpg';
-            var image = this.base64toBlob(base64, contentType);
-            var formData = new FormData();
-            formData.append("files", image, "ArtifactSignal.jpg");
-            
 			console.log(base64)
+			
+			this.sendToMl(this.getMlAuthToken, base64);
+			
+            if (!this.pressDialog) {
+				this.pressDialog = new Dialog({
+					title: 'machine_learning_returns:',
+					content: new List({
+						items: {
+							template: new Image({
+								src: base64,
+								width: 512,
+							})
+						}
+					}),
+					beginButton: new Button({
+						text: 'Close',
+						press: function () {
+							this.pressDialog.close();
+						}.bind(this)
+					})
+				});
+
+				//to get access to the global model
+				this.getView().addDependent(this.pressDialog);
+			}
+
+			this.pressDialog.open();
             
 		},
 
@@ -108,18 +134,44 @@ sap.ui.define([
 				return "Bearer " + result.access_token;
 			});
 		},
-
-		sendToMl: function () {
 		
-			//Use the following format to send to ML (image name can always be 'ArtifactSignal.jpg')
-			//image is a variable
-			//var formData = new FormData();
-			//formData.append("files", image, "ArtifactSignal.jpg");
-			
-			//url to post on : '/ml-dest/api/v2/image/classification/models/HTF/versions/2'
-			
-
-		},
+    	sendToMl: function (token, base64) {
+            var contentType = 'image/jpg';
+            var image = this.base64toBlob(base64, contentType);
+            var blobUrl = URL.createObjectURL(image);
+            var formData = new FormData();
+            formData.append("files", image, "ArtifactSignal.jpg");
+            var promise = new Promise(function (resolve, reject) {
+                $.ajax({
+                    type: "POST",
+                    url: "/ml-dest/api/v2/image/classification/models/HTF/versions/2",
+                    headers: {
+                        "Accept": "application/json",
+                        "APIKey": token,
+                        "Authorization": token
+                    },
+                    success: function (data) {
+                        resolve(data);
+                    },
+                    error: function (Error) {
+                        reject((Error));
+                    },
+                    contentType: false,
+                    async: false,
+                    data: formData,
+                    cache: false,
+                    processData: false
+                });
+            });
+            return Promise.resolve(promise).then(function (result) {
+                var obj = {
+                    "result": result,
+                    "image": blobUrl
+                };
+                return obj;
+            });
+        },
+        
 
 		base64toBlob: function (b64Data, contentType, sliceSize) {
 

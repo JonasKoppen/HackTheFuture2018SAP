@@ -48,17 +48,22 @@
 				width="12em">
 				<Text text="artifact_signal" />
 			</Column>
+			<Column
+				width="12em">
+				<Text text="img" />
+			</Column>
 		</columns>	
 		<items>
 			<ColumnListItem>
 				<cells>
 					<ObjectIdentifier
-						text="{artifactModel>artifact_id}"/>
+						title="{artifactModel>artifact_id}"/>
 					<Text
 						text="{artifactModel>longitude}" />
 					<Text
 						text="{artifactModel>latitude}" />
 					<Button text="Send artifact signal to ML" app:coords="{artifactModel>artifact_signal}" press="triggerML"/>
+					<Image src="{artifactModel>img}" densityAware="true" width="20em"/>
 				</cells>
 			</ColumnListItem>
 		</items>
