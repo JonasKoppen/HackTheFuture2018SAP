@@ -11,7 +11,7 @@ sap.ui.define([
 	"use strict";
 
 	return Controller.extend("com.flexso.HackTheFuture.controller.Main", {
-
+		
 		onInit: function () {
 			this.getIotData();
 		},
@@ -42,7 +42,9 @@ sap.ui.define([
 			var me = this;
 
 			return Promise.resolve(promise).then(function (result) {
-				return me.groupData(result);
+				
+				var somevar = me.groupData(result);
+				me.getView().setModel(new sap.ui.model.json.JSONModel(somevar), "artifactModel");
 			});
 		},
 
@@ -66,8 +68,9 @@ sap.ui.define([
 						break;
 				}
 			}
+			//"array":[{},{},{}]
 			console.log(out);
-			return JSON.stringify(out);
+			return {"array":out};
 		},
 
 		triggerML: function (oEvent) {

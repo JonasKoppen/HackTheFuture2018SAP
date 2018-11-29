@@ -21,17 +21,18 @@
 </mvc:View>
 -->
 <mvc:View
-	controllerName="com.flexso.HackTheFuture.controller.Table"
+	controllerName="com.flexso.HackTheFuture.controller.Main"
 	xmlns="sap.m"
 	xmlns:mvc="sap.ui.core.mvc">
 	<List
 		headerText="header"
 		class="sapUiResponsiveMargin"
 		width="auto"
-		items="">
+		items="{artifactModel>/array}">
 		<items>
 			<ObjectListItem
-				title="4 x j"/>
+				title="{artifactModel>longitude}"
+				/>
 		</items>
 	</List>
 </mvc:View>
