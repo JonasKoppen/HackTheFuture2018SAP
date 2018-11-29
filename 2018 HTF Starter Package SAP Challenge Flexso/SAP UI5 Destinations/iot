@@ -1,0 +1,9 @@
+#Password=<< Existing password/certificate removed on export >>
+#
+#Thu Nov 15 17:24:30 UTC 2018
+Name=iot
+URL=https\://flexso.eu10.cp.iot.sap/iot/core/api/v1/
+ProxyType=Internet
+Type=HTTP
+Authentication=BasicAuthentication
+User=htfadmin

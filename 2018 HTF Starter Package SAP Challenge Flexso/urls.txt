@@ -1,0 +1,8 @@
+SAP IoT-Service Cockpit URL:
+----------------------------------------------------
+https://flexso.eu10.cp.iot.sap/iot/cockpit/#/welcome
+
+
+Validation page for ML key
+--------------------------------------------------------------------------------------
+https://htf2018-s0019991374trial.dispatcher.hanatrial.ondemand.com/index.html?hc_reset

@@ -1,0 +1,7 @@
+#
+#Thu Nov 15 17:00:50 UTC 2018
+Name=sapui5ml-api
+URL=https\://mlftrial-image-classifier.cfapps.eu10.hana.ondemand.com/
+ProxyType=Internet
+Type=HTTP
+Authentication=NoAuthentication
