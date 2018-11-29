@@ -74,6 +74,16 @@ sap.ui.define([
 		},
 
 		triggerML: function (oEvent) {
+			var base64 = oEvent.getSource().getCustomData()[0].getProperty('value');
+			var contentType = 'image/jpg';
+			console.log(base64)
+			
+            var image = this.base64toBlob(base64, contentType);
+			console.log("form");
+            var formData = new FormData();
+			console.log("append");
+            formData.append("files", image, "ArtifactSignal.jpg");
+            
 		},
 
 		getMlAuthToken: function () {

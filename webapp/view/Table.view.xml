@@ -52,13 +52,12 @@
 			<ColumnListItem>
 				<cells>
 					<ObjectIdentifier
-						title="{artifactModel>artifact_id}"/>
+						text="{artifactModel>artifact_id}"/>
 					<Text
 						text="{artifactModel>longitude}" />
 					<Text
 						text="{artifactModel>latitude}" />
-					<Text
-						text="e" />
+					<Button text="Send artifact signal to ML" coords="{artifactModel>artifact_signal}" press="triggerML"/>
 				</cells>
 			</ColumnListItem>
 		</items>
