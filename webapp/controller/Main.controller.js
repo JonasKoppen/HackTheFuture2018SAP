@@ -42,8 +42,7 @@ sap.ui.define([
 			var me = this;
 
 			return Promise.resolve(promise).then(function (result) {
-				me.groupData(result);
-				return "Bearer " + result.access_token;
+				return me.groupData(result);
 			});
 		},
 
@@ -68,6 +67,7 @@ sap.ui.define([
 				}
 			}
 			console.log(out);
+			return JSON.stringify(out);
 		},
 
 		triggerML: function (oEvent) {
