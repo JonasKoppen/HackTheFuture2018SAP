@@ -24,15 +24,43 @@
 	controllerName="com.flexso.HackTheFuture.controller.Main"
 	xmlns="sap.m"
 	xmlns:mvc="sap.ui.core.mvc">
-	<List
+	<Table
 		headerText="header"
 		class="sapUiResponsiveMargin"
 		width="auto"
 		items="{artifactModel>/array}">
+		
+		<columns>
+			<Column
+				width="12em">
+				<Text text="artifact_id" />
+			</Column>
+			<Column
+				width="12em">
+				<Text text="longitude" />
+			</Column>
+			<Column
+				width="12em">
+				<Text text="latitude" />
+			</Column>
+			<Column
+				width="12em">
+				<Text text="artifact_signal" />
+			</Column>
+		</columns>	
 		<items>
-			<ObjectListItem
-				title="{artifactModel>longitude}"
-				/>
+			<ColumnListItem>
+				<cells>
+					<ObjectIdentifier
+						title="{artifactModel>artifact_id}"/>
+					<Text
+						text="{artifactModel>longitude}" />
+					<Text
+						text="{artifactModel>latitude}" />
+					<Text
+						text="e" />
+				</cells>
+			</ColumnListItem>
 		</items>
-	</List>
+	</Table>
 </mvc:View>
