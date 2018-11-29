@@ -26,14 +26,14 @@
 	xmlns="sap.m"
 	xmlns:mvc="sap.ui.core.mvc">
 	<Table
-		headerText="header"
+		headerText="The Artifact"
 		class="sapUiResponsiveMargin"
 		width="auto"
 		items="{artifactModel>/array}">
-		
 		<columns>
 			<Column
-				width="12em">
+				width="12em"
+				class="column">
 				<Text text="artifact_id" />
 			</Column>
 			<Column
