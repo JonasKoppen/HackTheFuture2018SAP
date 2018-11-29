@@ -12,6 +12,15 @@
 		"sourceTemplate": {
 			"id": "ui5template.basicSAPUI5ApplicationProject",
 			"version": "1.40.12"
+		},
+		"dataSources": {
+			"invoiceRemote": {
+				"uri": "https://flexso.eu10.cp.iot.sap/iot/core/api/v1/devices/109/measures",
+				"type": "OData",
+				"settings": {
+					"odataVersion": "2.0"
+				}
+			}
 		}
 	},
 	"sap.ui": {
@@ -29,10 +38,7 @@
 			"tablet": true,
 			"phone": true
 		},
-		"supportedThemes": [
-			"sap_hcb",
-			"sap_belize"
-		]
+		"supportedThemes": ["sap_hcb", "sap_belize"]
 	},
 	"sap.ui5": {
 		"rootView": {
@@ -62,14 +68,15 @@
 				"type": "sap.ui.model.json.JSONModel",
 				"preload": true,
 				"uri": "model/demo.json"
+			},
+			"invoice": {
+				"dataSource": "invoiceRemote"
 			}
 		},
 		"resources": {
-			"css": [
-				{
-					"uri": "css/style.css"
-				}
-			]
+			"css": [{
+				"uri": "css/style.css"
+			}]
 		},
 		"routing": {
 			"config": {
@@ -81,15 +88,11 @@
 				"controlId": "idAppControl",
 				"clearControlAggregation": false
 			},
-			"routes": [
-				{
-					"name": "RouteMain",
-					"pattern": "RouteMain",
-					"target": [
-						"TargetMain"
-					]
-				}
-			],
+			"routes": [{
+				"name": "TargetMain",
+				"pattern": "RouteMain",
+				"target": ["TargetMain"]
+			}],
 			"targets": {
 				"TargetMain": {
 					"viewType": "XML",
